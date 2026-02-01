@@ -1,6 +1,10 @@
 def mean(numbers: list[int]) -> int:
 
-    return round(sum(numbers) / len(numbers))
+    try:
+        return abs(round(sum(numbers) / len(numbers)))
+    
+    except:
+        raise ZeroDivisionError
 
 def hex_to_RGB(hex_codes: list[int]) -> list[int]:
 
@@ -20,6 +24,13 @@ def hex_to_RGB(hex_codes: list[int]) -> list[int]:
         raise ValueError
 
 def hex_mean(hex_codes: list[int]) -> str:
+
+    try:
+        if len(hex_codes) == 0:
+            return "000000"
+    
+    except:
+        raise TypeError
 
     R, G, B = hex_to_RGB(hex_codes)
 
