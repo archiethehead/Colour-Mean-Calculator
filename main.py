@@ -1,7 +1,7 @@
 import tkinter as tk
 from pyperclip import copy
 from tkinter import colorchooser
-
+from hex_calculator.calculator import find_complementary
 from hex_calculator.calculator import hex_mean
 
 def add_colour():
