@@ -18,3 +18,14 @@ def hex_to_RGB(hex_codes: list[int]) -> list[int]:
     
     except:
         raise ValueError
+
+def hex_mean(hex_codes: list[int]) -> str:
+
+    R, G, B = hex_to_RGB(hex_codes)
+
+    R = str(hex(mean(R)))
+    G = str(hex(mean(G)))
+    B = str(hex(mean(B)))
+
+    mean_hex = R[2:] + G[2:] + B[2:]
+    return mean_hex
