@@ -5,7 +5,7 @@ from hex_calculator.calculator import hex_mean
 
 def add_colour():
     colour_code = colorchooser.askcolor(title ="Choose your colour")
-    if colour_code:
+    if colour_code and colour_code[0] != None:
         hex_code = colour_code[1][1:] 
         listbox.insert(tk.END, hex_code)
         update_mean_colour()
