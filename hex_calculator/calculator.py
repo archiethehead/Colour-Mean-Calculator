@@ -21,7 +21,7 @@ def hex_to_RGB(hex_codes: list[int]) -> list[int]:
         return R, G, B
     
     except:
-        raise TypeError
+        raise ValueError
 
 def hex_mean(hex_codes: list[int]) -> str:
 
