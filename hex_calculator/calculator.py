@@ -90,9 +90,20 @@ def hex_mean(hex_codes: list[str]) -> str:
 
     R, G, B = hex_to_RGB(hex_codes)
 
-    R = str(hex(mean(R)))
-    G = str(hex(mean(G)))
-    B = str(hex(mean(B)))
+    R = str(hex(mean(R)))[2:]
+    G = str(hex(mean(G)))[2:]
+    B = str(hex(mean(B)))[2:]
+    
 
-    mean_hex = R[2:] + G[2:] + B[2:]
+    # Integers with trailing zeros have them removed, but there are needed for hex codes.
+    # This verificaiton checks for this and ammends it if necessary.
+
+    RGB_list = [R, G, B]
+    zero = "0"
+
+    for x in range(3):
+        if len(RGB_list[x]) == 1:
+            RGB_list[x] = zero + RGB_list[x]
+
+    mean_hex = RGB_list[0] + RGB_list[1] + RGB_list[2]
     return mean_hex
