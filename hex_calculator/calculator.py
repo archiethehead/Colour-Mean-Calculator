@@ -1,6 +1,6 @@
 def mean(numbers: list[int]) -> int | str:
 
-    return round(sum(numbers) / len(numbers))
+    return abs(round(sum(numbers) / len(numbers)))
 
 def hex_to_RGB(hex_codes: list[int]) -> list[int]:
 
