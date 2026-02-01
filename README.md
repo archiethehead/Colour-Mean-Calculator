@@ -9,7 +9,8 @@ The repository can be cloned with the following command:
 N/A
 
 ## Contributors
-Mr. Archie T. Healy - archiehealy06@gmail.com
+Backend Dev - Mr. Archie T. Healy - archiehealy06@gmail.com
+Frontend Dev - Mr. Luke R. Cheshire - lcheshire3335@icloud.com
 
 ## License
 This is free and unencumbered software released into the public domain.
