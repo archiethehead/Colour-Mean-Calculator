@@ -1,4 +1,4 @@
-def mean(numbers: list[int]) -> int:
+def mean(numbers: list[int]) -> int | str:
 
     return round(sum(numbers) / len(numbers))
 
@@ -20,6 +20,9 @@ def hex_to_RGB(hex_codes: list[int]) -> list[int]:
         raise ValueError
 
 def hex_mean(hex_codes: list[int]) -> str:
+
+    if len(hex_codes) == 0:
+        return "000000"
 
     R, G, B = hex_to_RGB(hex_codes)
 
