@@ -21,8 +21,12 @@ def hex_to_RGB(hex_codes: list[int]) -> list[int]:
 
 def hex_mean(hex_codes: list[int]) -> str:
 
-    if len(hex_codes) == 0:
-        return "000000"
+    try:
+        if len(hex_codes) == 0:
+            return "000000"
+    
+    except:
+        raise TypeError
 
     R, G, B = hex_to_RGB(hex_codes)
 
