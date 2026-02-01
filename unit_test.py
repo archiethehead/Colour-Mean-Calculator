@@ -17,7 +17,7 @@ class test_hex_mean(unittest.TestCase):
         self.assertEqual(calculator.hex_mean([]), '000000')
     
     def test_one(self):
-        self.assertEqual(calculator.hex_mean(['004b9d']), '04b9d')
+        self.assertEqual(calculator.hex_mean(['004b9d']), '004b9d')
     
     def test_non_string(self):
         with self.assertRaises(ValueError):
