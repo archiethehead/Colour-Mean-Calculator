@@ -1,4 +1,5 @@
 import tkinter as tk
+from pyperclip import copy
 from tkinter import colorchooser
 
 from hex_calculator.calculator import hex_mean
@@ -41,6 +42,9 @@ def clear_all():
     listbox.delete(0, tk.END)
     update_mean_colour()
 
+def copy_current():
+    copy(hex_mean(listbox.get(0, tk.END)))
+
 test = ["004b9d",
         "202f55",
         "13c2f0",
@@ -75,6 +79,9 @@ delete_colour_button.place(x=170,y=140)
 
 clear_all_button = tk.Button(root, text="Clear all", command= clear_all)
 clear_all_button.place(x=170,y=180)
+
+copy_button = tk.Button(root, text="Copy", command= copy_current)
+copy_button.place(x=170,y=220)
 
 selected_colour_from_list = listbox.get(tk.ACTIVE)
 
