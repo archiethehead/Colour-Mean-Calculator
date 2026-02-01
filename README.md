@@ -10,6 +10,7 @@ N/A
 
 ## Contributors
 Backend Dev - Mr. Archie T. Healy - archiehealy06@gmail.com
+
 Frontend Dev - Mr. Luke R. Cheshire - lcheshire3335@icloud.com
 
 ## License
