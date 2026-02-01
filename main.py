@@ -17,10 +17,10 @@ def update_mean_colour():
         mean_hex = hex_mean(items)
         label2.config(text="The mean colour is: #" + mean_hex)
         colour_canvas.config(bg="#" + mean_hex)
-        print(mean_hex)
     else:
         label2.config(text="The mean colour is: #000000")
         colour_canvas.config(bg="#000000")
+    update_complementary_colour()
 
 def delete_colour():
     selected_indices = listbox.curselection()
@@ -44,6 +44,18 @@ def clear_all():
 
 def copy_current():
     copy(hex_mean(listbox.get(0, tk.END)))
+
+def update_complementary_colour():
+    mean_hex = hex_mean(listbox.get(0, tk.END))
+    complementary_hex = find_complementary(mean_hex)
+    complimentary_colour_canvas.config(bg="#" + complementary_hex)
+    complimentary_colour_label.config(text="Complimentary colour: #" + complementary_hex)
+
+def add_colour_via_entry():
+    hex_code = hex_code_entry.get()
+    if len(hex_code) == 6 and all(c in '0123456789abcdefABCDEF' for c in hex_code):
+        listbox.insert(tk.END, hex_code)
+        update_mean_colour()
 
 test = ["004b9d",
         "202f55",
@@ -81,7 +93,7 @@ clear_all_button = tk.Button(root, text="Clear all", command= clear_all)
 clear_all_button.place(x=170,y=180)
 
 copy_button = tk.Button(root, text="Copy", command= copy_current)
-copy_button.place(x=170,y=220)
+copy_button.place(x=540,y=160)
 
 selected_colour_from_list = listbox.get(tk.ACTIVE)
 
@@ -90,6 +102,26 @@ selected_colour_canvas.place(x=20,y=320)
 
 selected_colour_label = tk.Label(root, text="Your selected colour: #" + selected_colour_from_list if selected_colour_from_list else "Your selected colour: #ffffff")
 selected_colour_label.place(x=80,y=335)
+
+complimentary_colour_canvas = tk.Canvas(root, bg="#" + find_complementary(hex_mean(test)), width=50, height=50)
+complimentary_colour_canvas.place(x=300,y=320)
+
+complimentary_colour_label = tk.Label(root, text="Complimentary colour: #" + find_complementary(hex_mean(test)))
+complimentary_colour_label.place(x=360,y=335)
+
+hex_code_entry = tk.Entry(root,width=10)
+hex_code_entry.place(x=170,y=220)
+hex_code_entry.insert(0, "Hex code", )
+hex_code_entry.bind("<FocusIn>", lambda args: hex_code_entry.delete('0', 'end') )
+
+hex_code_add_button = tk.Button(root, text="Add", command= add_colour_via_entry)
+hex_code_add_button.place(x=240,y=215)
+
+selected_colour_copy_button = tk.Button(root, text="Copy", command=lambda: copy(listbox.get(tk.ACTIVE) if listbox.curselection() else ""))
+selected_colour_copy_button.place(x=140,y=360)
+
+complimentary_colour_copy_button = tk.Button(root, text="Copy", command=lambda: copy(find_complementary(hex_mean(listbox.get(0, tk.END)))))
+complimentary_colour_copy_button.place(x=420,y=360)
 
 listbox.bind("<<ListboxSelect>>", update_selected_colour_display)
 
