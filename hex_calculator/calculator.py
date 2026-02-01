@@ -22,6 +22,31 @@ def mean(numbers: list[int]) -> int:
     except:
         raise ZeroDivisionError
 
+def find_complementary(hex_code: str) -> str:
+
+    """Returns the mathematical complementary of a given hex code.
+    
+        Args:
+           hex_code(str): Each R, G, or B value in the form of a string.
+    
+        Returns:
+            str: The complementary of the given hex code in the form of a string.
+    
+        Raises:
+            N/A
+    
+        Examples:
+            >>> find_complementary(F192AB)
+            0e6d54
+        """
+
+    R, G, B = hex_to_RGB([hex_code])
+    R = 255 - R[0]
+    G = 255 - G[0]
+    B = 255 - B[0]
+
+    return stringify_hex(R, G, B)
+
 def hex_to_RGB(hex_codes: list[str]) -> list[int]:
 
     """Returns the constituent RGB values of a hex colour code in the form of three string lists.
@@ -54,6 +79,44 @@ def hex_to_RGB(hex_codes: list[str]) -> list[int]:
     
     except:
         raise ValueError
+
+def stringify_hex(R: int, G: int, B: int) -> str:
+    
+    """Returns a given set of RGB values as a single string.
+    
+        Args:
+           R(int)
+           G(int)
+           B(int)
+    
+        Returns:
+            str: The RGB values as a complete hex string
+    
+        Raises:
+            N/A
+    
+        Examples:
+            >>> find_complementary(0x0, 0xFF, 0XFF)
+            00FFFF
+        """
+
+    # Integers with trailing zeros have them removed, but there are needed for hex codes.
+    # This verificaiton checks for this and ammends it if necessary.
+
+    R = str(hex((R)))[2:]
+    G = str(hex((G)))[2:]
+    B = str(hex((B)))[2:]
+    
+    RGB_list = [R, G, B]
+    zero = "0"
+
+    for x in range(3):
+        if len(RGB_list[x]) == 1:
+            RGB_list[x] = zero + RGB_list[x]
+
+    mean_hex = RGB_list[0] + RGB_list[1] + RGB_list[2]
+
+    return mean_hex
 
 def hex_mean(hex_codes: list[str]) -> str:
 
@@ -90,20 +153,8 @@ def hex_mean(hex_codes: list[str]) -> str:
 
     R, G, B = hex_to_RGB(hex_codes)
 
-    R = str(hex(mean(R)))[2:]
-    G = str(hex(mean(G)))[2:]
-    B = str(hex(mean(B)))[2:]
-    
+    R, G, B = mean(R), mean(G), mean(B)
 
-    # Integers with trailing zeros have them removed, but there are needed for hex codes.
-    # This verificaiton checks for this and ammends it if necessary.
+    mean_hex = stringify_hex(R, G, B)
 
-    RGB_list = [R, G, B]
-    zero = "0"
-
-    for x in range(3):
-        if len(RGB_list[x]) == 1:
-            RGB_list[x] = zero + RGB_list[x]
-
-    mean_hex = RGB_list[0] + RGB_list[1] + RGB_list[2]
     return mean_hex
