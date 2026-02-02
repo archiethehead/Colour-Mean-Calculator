@@ -1,6 +1,8 @@
 import tkinter as tk
+import pyautogui
 from pyperclip import copy
 from tkinter import colorchooser
+from hex_calculator.calculator import stringify_hex
 from hex_calculator.calculator import find_complementary
 from hex_calculator.calculator import hex_mean
 
@@ -11,7 +13,31 @@ def add_colour():
         listbox.insert(tk.END, hex_code)
         update_mean_colour()
 
+
+
+def eyedrop_copy(event):
+
+    x, y = pyautogui.position()
+
+    image = pyautogui.screenshot(region=(x,y, 1, 1))
+    colour = image.getpixel((0, 0))
+    hex_colour = stringify_hex(*colour)
+
+    root.config(cursor='')
+
+    ctr_c_label.place_forget()
+    
+    root.unbind("<Control-c>")
+    listbox.insert(tk.END, hex_colour)
+    update_mean_colour()
+
+def toggle_eyedrop():
+    root.config(cursor='target')
+    ctr_c_label.place(x=170,y=275)
+    root.bind("<Control-c>", eyedrop_copy)
+
 def update_mean_colour():
+
     items = listbox.get(0, tk.END)
     if items:
         mean_hex = hex_mean(items)
@@ -40,6 +66,7 @@ def update_selected_colour_display(event=None):
 
 def clear_all():
     listbox.delete(0, tk.END)
+    update_selected_colour_display(event=None)
     update_mean_colour()
 
 def copy_current():
@@ -117,6 +144,11 @@ hex_code_entry.bind("<FocusIn>", lambda args: hex_code_entry.delete('0', 'end') 
 hex_code_add_button = tk.Button(root, text="Add", command= add_colour_via_entry)
 hex_code_add_button.place(x=240,y=215)
 
+eyedrop_button = tk.Button(root, text="Eyedrop", command=toggle_eyedrop)
+eyedrop_button.place(x=170,y=250)
+
+ctr_c_label = tk.Label(root, text="Ctrl + C = Eyedrop")
+
 selected_colour_copy_button = tk.Button(root, text="Copy", command=lambda: copy(listbox.get(tk.ACTIVE) if listbox.curselection() else ""))
 selected_colour_copy_button.place(x=140,y=360)
 
@@ -125,4 +157,5 @@ complimentary_colour_copy_button.place(x=420,y=360)
 
 listbox.bind("<<ListboxSelect>>", update_selected_colour_display)
 
+root.iconbitmap('colour-wheel.ico')
 root.mainloop()
