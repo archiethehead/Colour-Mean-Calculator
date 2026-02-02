@@ -80,16 +80,16 @@ listbox.place(x=20, y=70)
 label2 = tk.Label(root, text = "The mean colour is: #" + hex_mean(test), font=("Arial", 14, "bold"))
 label2.place(x=280,y=40)
 
-colour_canvas = tk.Canvas(root, bg="#" + hex_mean(test), width=225, height=225)
+colour_canvas = tk.Canvas(root, bg="#" + hex_mean(test), width=225, height=225, borderwidth=2, relief="solid")
 colour_canvas.place(x=300,y=70)
 
-add_colour_button = tk.Button(root, text="Add colour", command= add_colour) 
+add_colour_button = tk.Button(root, text="Colour Menu", command= add_colour) 
 add_colour_button.place(x=170,y=100)
 
-delete_colour_button = tk.Button(root, text="Delete colour", command= delete_colour) 
+delete_colour_button = tk.Button(root, text="Delete Colour", command= delete_colour) 
 delete_colour_button.place(x=170,y=140)
 
-clear_all_button = tk.Button(root, text="Clear all", command= clear_all)
+clear_all_button = tk.Button(root, text="Clear All", command= clear_all)
 clear_all_button.place(x=170,y=180)
 
 copy_button = tk.Button(root, text="Copy", command= copy_current)
@@ -97,13 +97,13 @@ copy_button.place(x=540,y=160)
 
 selected_colour_from_list = listbox.get(tk.ACTIVE)
 
-selected_colour_canvas = tk.Canvas(root, bg="#" + selected_colour_from_list if selected_colour_from_list else "#ffffff", width=50, height=50)
+selected_colour_canvas = tk.Canvas(root, bg="#" + selected_colour_from_list if selected_colour_from_list else "#ffffff", width=50, height=50, borderwidth=2, relief="solid")
 selected_colour_canvas.place(x=20,y=320)
 
 selected_colour_label = tk.Label(root, text="Your selected colour: #" + selected_colour_from_list if selected_colour_from_list else "Your selected colour: #ffffff")
 selected_colour_label.place(x=80,y=335)
 
-complimentary_colour_canvas = tk.Canvas(root, bg="#" + find_complementary(hex_mean(test)), width=50, height=50)
+complimentary_colour_canvas = tk.Canvas(root, bg="#" + find_complementary(hex_mean(test)), width=50, height=50, borderwidth=2, relief="solid")
 complimentary_colour_canvas.place(x=300,y=320)
 
 complimentary_colour_label = tk.Label(root, text="Complimentary colour: #" + find_complementary(hex_mean(test)))
