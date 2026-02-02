@@ -2,11 +2,14 @@
 A calculator written in Python for determining the mean between two or more hexadecimal values.
 
 ## Installation
-The repository can be cloned with the following command:
+An executable can be found in the Build folder, but alternatively, the repository can be cloned with the following command:
 > git clone https://github.com/archiethehead/Colour-Mean-Calculator
 
 ## Quick Start
-N/A
+If you have a copy of the Python Interpreter installed on your machine, simply clone the repository (so that all the project-local dependencies are installed) and run main.pyw. Alternatively, for Windows machines, a bundled package executable of the Python 3.10 Interpreter and all the source + dependencies can be found in the Build folder.
+
+Simply add colours via the entry box, colour menu, or eyedropper, and allow the program to calculate the mathematical mean of the given colours, and the complementary colour of the mean. Any dependencies you're missing can be installed with the command below:
+> py -m pip install [INSERT MODULE NAME HERE]
 
 ## Contributors
 Backend Dev - Mr. Archie T. Healy - archiehealy06@gmail.com
