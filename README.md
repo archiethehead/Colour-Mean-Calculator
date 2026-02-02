@@ -2,7 +2,7 @@
 A calculator written in Python for determining the mean between two or more hexadecimal values.
 
 ## Installation
-An executable can be found in the Build folder, but alternatively, the repository can be cloned with the following command:
+An executable can be found in the Build folder (or release page), but alternatively, the repository can be cloned with the following command:
 > git clone https://github.com/archiethehead/Colour-Mean-Calculator
 
 ## Quick Start
